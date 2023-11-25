@@ -1,10 +1,11 @@
 import { Button } from "@chakra-ui/react";
+import * as S from "./Buttons.styles";
 
 export const Buttons = () => {
   return (
-    <div>
+    <S.ButtonsContainer>
       <Button>Add User</Button>
       <Button>Confirm</Button>
-    </div>
+    </S.ButtonsContainer>
   );
 };
