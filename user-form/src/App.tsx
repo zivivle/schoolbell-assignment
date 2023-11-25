@@ -1,14 +1,13 @@
-import "./App.css";
+import * as S from "./App.styles";
 import { Buttons, UserEditForm, UserList } from "./components";
 
 function App() {
   return (
-    <div className="App">
-      <div>USER FORM!</div>
+    <S.MainContainer>
       <UserEditForm />
       <Buttons />
       <UserList />
-    </div>
+    </S.MainContainer>
   );
 }
 
