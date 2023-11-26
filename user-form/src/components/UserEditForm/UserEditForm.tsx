@@ -22,7 +22,7 @@ export const UserEditForm = ({
         />
       </S.CardHeading>
       <S.CardBodyContainer>
-        <form>
+        <S.ValidateInputContainer>
           <ValidateInput
             label="Name"
             type="text"
@@ -39,7 +39,7 @@ export const UserEditForm = ({
             isNameDuplicate={false}
             fieldValid={userData.passwordValid}
           />
-        </form>
+        </S.ValidateInputContainer>
       </S.CardBodyContainer>
     </S.CardContainer>
   );

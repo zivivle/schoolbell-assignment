@@ -11,18 +11,26 @@ export const ValidateInput = ({
   isNameDuplicate,
 }: PropsWithChildren<IValidateInput>) => {
   const autoComplete = type === "password" ? "new-password" : "";
+  const isInvalid = (type === "text" && isNameDuplicate) || !fieldValid;
   return (
-    <S.ValidateInputContainer>
+    <div>
       <S.Label>{label}</S.Label>
       <S.CardInput
         type={type}
         name={name}
         onChange={onChange}
         autoComplete={autoComplete}
+        isInvalid={isInvalid}
       />
-      {isNameDuplicate && type === "text" && <div>중복된 이름이 있습니다.</div>}
-      {!fieldValid && type === "text" && <div>3자 이상 입력해주세요.</div>}
-      {!fieldValid && type === "password" && <div>6자 이상 입력해주세요.</div>}
-    </S.ValidateInputContainer>
+      {isNameDuplicate && type === "text" && (
+        <S.ValidationError>중복된 이름이 있습니다.</S.ValidationError>
+      )}
+      {!fieldValid && type === "text" && (
+        <S.ValidationError>3자 이상 입력해주세요.</S.ValidationError>
+      )}
+      {!fieldValid && type === "password" && (
+        <S.ValidationError>6자 이상 입력해주세요.</S.ValidationError>
+      )}
+    </div>
   );
 };
