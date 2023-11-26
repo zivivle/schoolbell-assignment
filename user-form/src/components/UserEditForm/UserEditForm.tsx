@@ -2,16 +2,18 @@ import { Heading } from "@chakra-ui/react";
 import * as S from "./UserEditForm.styles";
 import { ChangeEvent, PropsWithChildren } from "react";
 import { tempUserInfoAtom } from "../../store/UserForm.atoms";
-import { useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import type { IUserEditForm } from "./UserEditForm.types";
+import { ValidateInput } from "../ValidateInput/ValidateInput";
+import { isNameDuplicated } from "../../utils/isNameDuplicated";
 
 export const UserEditForm = ({
   userData,
 }: PropsWithChildren<IUserEditForm>) => {
-  const setUserInfo = useSetAtom(tempUserInfoAtom);
+  const [tempUserInfo, setTempUserInfo] = useAtom(tempUserInfoAtom);
 
   const handleDeleteUserInfo = (id: number) => {
-    setUserInfo((prev) => prev.filter((userInfo) => userInfo.id !== id));
+    setTempUserInfo((prev) => prev.filter((userInfo) => userInfo.id !== id));
   };
 
   const handleChangeUserInfo = (
@@ -24,19 +26,24 @@ export const UserEditForm = ({
     const fieldId = parseInt(fieldUserId, 10);
 
     if (fieldId === currentUserId) {
-      setUserInfo((prev) => {
+      setTempUserInfo((prev) => {
         const userIndex = prev.findIndex((user) => user.id === fieldId);
         const updatedUsers = [...prev];
         if (userIndex >= 0) {
+          const fieldValid =
+            fieldName === "name" ? value.length >= 3 : value.length >= 6;
           updatedUsers[userIndex] = {
             ...updatedUsers[userIndex],
             [fieldName]: value,
+            [`${fieldName}Valid`]: fieldValid,
           };
         } else {
           const newUser = {
             id: fieldId,
             name: "",
             password: "",
+            nameValid: true,
+            passwordValid: true,
             [fieldName]: value,
           };
           updatedUsers.push(newUser);
@@ -44,6 +51,13 @@ export const UserEditForm = ({
         return updatedUsers;
       });
     }
+  };
+
+  const isNameDuplicate = (name: string, id: number) => {
+    if (name === "") {
+      return false;
+    }
+    return isNameDuplicated(tempUserInfo, { name, id });
   };
 
   return (
@@ -57,21 +71,21 @@ export const UserEditForm = ({
         />
       </S.CardHeading>
       <S.CardBodyContainer>
-        <S.Label>Name</S.Label>
-        <S.CardInput
+        <ValidateInput
+          label="Name"
           type="text"
           name={`name-${userData.id}`}
-          onChange={(e) => {
-            handleChangeUserInfo(e, userData.id);
-          }}
+          onChange={(e) => handleChangeUserInfo(e, userData.id)}
+          isNameDuplicate={isNameDuplicate(userData.name, userData.id)}
+          fieldValid={userData.nameValid}
         />
-        <S.Label>Password</S.Label>
-        <S.CardInput
+        <ValidateInput
+          label="Password"
           type="password"
           name={`password-${userData.id}`}
-          onChange={(e) => {
-            handleChangeUserInfo(e, userData.id);
-          }}
+          onChange={(e) => handleChangeUserInfo(e, userData.id)}
+          isNameDuplicate={false}
+          fieldValid={userData.passwordValid}
         />
       </S.CardBodyContainer>
     </S.CardContainer>
