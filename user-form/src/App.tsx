@@ -1,11 +1,9 @@
 import * as S from "./App.styles";
 import { Buttons, UserEditForm, UserList } from "./components";
-import { useAtomValue } from "jotai";
-import { tempUserInfoAtom, userInfoShow } from "./store/UserForm.atoms";
+import { useMain } from "./hooks/useMain";
 
 function App() {
-  const userInfo = useAtomValue(tempUserInfoAtom);
-  const userInfoList = useAtomValue(userInfoShow);
+  const { userInfo, userInfoList } = useMain();
 
   return (
     <S.MainContainer>

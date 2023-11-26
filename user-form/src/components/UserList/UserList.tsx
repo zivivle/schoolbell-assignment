@@ -2,14 +2,10 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 import * as S from "./UserList.styles";
 import { UserInfoList } from "./components";
 import { Tooltip } from "@chakra-ui/react";
-import { userInfoAtom } from "../../store/UserForm.atoms";
-import { useAtomValue } from "jotai";
+import { useUserList } from "../../hooks/useUserList";
 
 export const UserList = () => {
-  const userInfo = useAtomValue(userInfoAtom);
-  const filteredUserInfo = userInfo.filter(
-    (userData) => userData.name !== "" && userData.password !== ""
-  );
+  const { filteredUserInfo } = useUserList();
 
   const emptyUserInfo = <div>등록된 User 정보가 없습니다.</div>;
 
