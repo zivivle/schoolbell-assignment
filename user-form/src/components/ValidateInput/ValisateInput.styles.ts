@@ -8,7 +8,7 @@ export const Label = styled.label`
 
 export const CardInput = styled(Input)`
   width: 100%;
-  margin-bottom: ${({ isInvalid }) => (isInvalid ? "0px" : "14px")};
+  margin-bottom: ${({ isInvalid }) => (isInvalid ? "0px" : "15px")};
   border-color: ${({ isInvalid }) => (isInvalid ? "#FF6347" : "initial")};
   :focus {
     border-color: ${({ isInvalid }) => (isInvalid ? "#FF6347" : "#6495ED")};

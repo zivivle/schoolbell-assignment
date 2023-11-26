@@ -14,12 +14,14 @@ export const ValidateInput = ({
 }: PropsWithChildren<IValidateInput>) => {
   const autoComplete = type === "password" ? "new-password" : "";
   const isInvalid = (type === "text" && isNameDuplicate) || !fieldValid;
-  const isEmptyValue = !value;
+  const isEmptyValue = !value && !fieldValid;
+
   const errorMessage = determineErrorMessage(
     type,
     isNameDuplicate,
     fieldValid,
-    isEmptyValue
+    isEmptyValue,
+    value
   );
 
   return (
@@ -32,6 +34,7 @@ export const ValidateInput = ({
         autoComplete={autoComplete}
         isInvalid={isInvalid}
       />
+
       {errorMessage && <S.ValidationError>{errorMessage}</S.ValidationError>}
     </div>
   );
