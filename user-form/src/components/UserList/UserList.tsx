@@ -7,6 +7,11 @@ import { useAtomValue } from "jotai";
 
 export const UserList = () => {
   const userInfo = useAtomValue(userInfoAtom);
+  const filteredUserInfo = userInfo.filter(
+    (userData) => userData.name !== "" && userData.password !== ""
+  );
+
+  const emptyUserInfo = <div>등록된 User 정보가 없습니다.</div>;
 
   return (
     <div>
@@ -20,10 +25,11 @@ export const UserList = () => {
       </S.UserListTitleContainer>
       <S.UserInfoListContainer>
         <S.UserInfoWrapper>
-          {userInfo.length > 0 &&
-            userInfo.map((userData) => (
-              <UserInfoList key={userData.id} userData={userData} />
-            ))}
+          {filteredUserInfo.length > 0
+            ? filteredUserInfo.map((userData) => (
+                <UserInfoList key={userData.id} userData={userData} />
+              ))
+            : emptyUserInfo}
         </S.UserInfoWrapper>
       </S.UserInfoListContainer>
     </div>
