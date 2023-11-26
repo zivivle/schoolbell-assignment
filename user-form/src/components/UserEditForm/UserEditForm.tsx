@@ -27,6 +27,7 @@ export const UserEditForm = ({
             label="Name"
             type="text"
             name={`name-${userData.id}`}
+            value={userData.name || ""}
             onChange={(e) => handleChangeUserInfo(e, userData.id)}
             isNameDuplicate={isNameDuplicate(userData.name, userData.id)}
             fieldValid={userData.nameValid}
@@ -35,6 +36,7 @@ export const UserEditForm = ({
             label="Password"
             type="password"
             name={`password-${userData.id}`}
+            value={userData.password || ""}
             onChange={(e) => handleChangeUserInfo(e, userData.id)}
             isNameDuplicate={false}
             fieldValid={userData.passwordValid}
