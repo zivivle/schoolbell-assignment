@@ -7,6 +7,7 @@ function App() {
 
   return (
     <S.MainContainer>
+      <S.MainTitle>USER INFO FORM</S.MainTitle>
       {userInfo?.map((userData) => (
         <UserEditForm key={userData.id} userData={userData} />
       ))}
