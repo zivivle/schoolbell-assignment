@@ -1,18 +1,47 @@
 import { Heading } from "@chakra-ui/react";
 import * as S from "./UserEditForm.styles";
+import { PropsWithChildren } from "react";
+import type { IUserEditForm } from "./UserEditForm.types";
+import { ValidateInput } from "../ValidateInput/ValidateInput";
+import { useUserEditForm } from "../../hooks/useUserEditForm";
 
-export const UserEditForm = () => {
+export const UserEditForm = ({
+  userData,
+}: PropsWithChildren<IUserEditForm>) => {
+  const { handleDeleteUserInfo, handleChangeUserInfo, isNameDuplicate } =
+    useUserEditForm();
+
   return (
     <S.CardContainer align="center">
       <S.CardHeading>
-        <Heading size="md">User - NUMBER</Heading>
-        <S.CardCloseButton />
+        <Heading size="md">User - {userData.id}</Heading>
+        <S.CardCloseButton
+          onClick={() => {
+            handleDeleteUserInfo(userData.id);
+          }}
+        />
       </S.CardHeading>
       <S.CardBodyContainer>
-        <S.Label>Name</S.Label>
-        <S.CardInput type="text" name="name" />
-        <S.Label>Password</S.Label>
-        <S.CardInput type="password" name="password" />
+        <S.ValidateInputContainer>
+          <ValidateInput
+            label="Name"
+            type="text"
+            name={`name-${userData.id}`}
+            value={userData.name || ""}
+            onChange={(e) => handleChangeUserInfo(e, userData.id)}
+            isNameDuplicate={isNameDuplicate(userData.name, userData.id)}
+            fieldValid={userData.nameValid}
+          />
+          <ValidateInput
+            label="Password"
+            type="password"
+            name={`password-${userData.id}`}
+            value={userData.password || ""}
+            onChange={(e) => handleChangeUserInfo(e, userData.id)}
+            isNameDuplicate={false}
+            fieldValid={userData.passwordValid}
+          />
+        </S.ValidateInputContainer>
       </S.CardBodyContainer>
     </S.CardContainer>
   );

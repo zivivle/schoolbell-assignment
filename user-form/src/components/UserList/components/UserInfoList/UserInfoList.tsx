@@ -1,13 +1,17 @@
+import { PropsWithChildren } from "react";
 import * as S from "./UserInfoList.styles";
+import { IUserEditForm } from "../../../UserEditForm/UserEditForm.types";
 
-export const UserInfoList = () => {
+export const UserInfoList = ({
+  userData,
+}: PropsWithChildren<IUserEditForm>) => {
   return (
     <S.InfoContainer>
       <S.InfoSection>
-        Name:<p>지성경</p>
+        Name:<p>{userData.name}</p>
       </S.InfoSection>
       <S.InfoSection>
-        Password:<p>***1023</p>
+        Password:<p>{userData.password}</p>
       </S.InfoSection>
     </S.InfoContainer>
   );

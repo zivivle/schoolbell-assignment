@@ -1,12 +1,18 @@
 import * as S from "./App.styles";
 import { Buttons, UserEditForm, UserList } from "./components";
+import { useMain } from "./hooks/useMain";
 
 function App() {
+  const { userInfo, userInfoList } = useMain();
+
   return (
     <S.MainContainer>
-      <UserEditForm />
+      <S.MainTitle>USER INFO FORM</S.MainTitle>
+      {userInfo?.map((userData) => (
+        <UserEditForm key={userData.id} userData={userData} />
+      ))}
       <Buttons />
-      <UserList />
+      {userInfoList ? <UserList /> : null}
     </S.MainContainer>
   );
 }

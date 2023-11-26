@@ -38,11 +38,6 @@ export const CardBodyContainer = styled(CardBody)`
   align-items: start;
 `;
 
-export const Label = styled.label`
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-export const CardInput = styled(Input)`
-  margin-bottom: 10px;
+export const ValidateInputContainer = styled.form`
+  width: 100%;
 `;
