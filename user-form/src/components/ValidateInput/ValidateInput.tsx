@@ -1,14 +1,6 @@
-import { ChangeEvent, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import * as S from "./ValisateInput.styles";
-
-interface IValidateInput {
-  type: string;
-  label: string;
-  name: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  isNameDuplicate: boolean;
-  fieldValid: boolean;
-}
+import type { IValidateInput } from "./ValidateInput.types";
 
 export const ValidateInput = ({
   type,
