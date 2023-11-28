@@ -4,7 +4,7 @@
 
 ![과제2](https://github.com/zivivle/schoolbell-assignment/assets/123868471/1ad1bd53-d58d-4248-a410-2f71df622322)
 
-<br/>
+### 정답 코드
 
 1.  **jQuery 코드**:
 
