@@ -4,6 +4,8 @@
 
 ![과제2](https://github.com/zivivle/schoolbell-assignment/assets/123868471/1ad1bd53-d58d-4248-a410-2f71df622322)
 
+<br/>
+
 1.  **jQuery 코드**:
 
     ```javascript
@@ -16,7 +18,7 @@
     document.querySelector("#target-1").classList.remove("border");
     ```
 
-    <br/>
+    <br/><br/>
 
 2.  **jQuery 코드**:
 
@@ -30,7 +32,7 @@
     document.querySelector("#target-1").style.left = "250px";
     ```
 
-    <br/>
+    <br/><br/>
 
 3.  **jQuery 코드**:
 
@@ -44,7 +46,7 @@
     document.querySelector(".target-2").classList.replace("border", "blue");
     ```
 
-    <br/>
+    <br/><br/>
 
 4.  **jQuery 코드**:
 
@@ -61,7 +63,7 @@
     target2.style.marginTop = "-15px";
     ```
 
-    <br/>
+    <br/><br/>
 
 5.  **jQuery 코드**:
 
