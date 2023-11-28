@@ -1,8 +1,8 @@
-function getMaxProduct(numbers) {
+function getMaxProductts(numbers: number[]): [number, number] {
   let maxProduct = 0;
-  let maxCombo = [];
+  let maxCombo: [number, number] = [0, 0];
 
-  function calculateProduct(arr, index) {
+  function calculateProduct(arr: number[], index: number): void {
     const num1 = parseInt(arr.slice(0, index).join(""));
     const num2 = parseInt(arr.slice(index).join(""));
     const product = num1 * num2;
@@ -12,7 +12,7 @@ function getMaxProduct(numbers) {
     }
   }
 
-  function permute(arr, l, r) {
+  function permute(arr: number[], l: number, r: number): void {
     if (l === r) {
       for (let i = 1; i < arr.length; i++) {
         calculateProduct(arr, i);
@@ -30,10 +30,10 @@ function getMaxProduct(numbers) {
   return maxCombo;
 }
 
-const numbers = [1, 3, 5, 7, 9];
-const result = getMaxProduct(numbers);
+const testNumbers = [1, 3, 5, 7, 9];
+const testResult = getMaxProduct(testNumbers);
 console.log(
-  `가장 큰 곱을 가진 숫자 조합: [${result.join(", ")}], 곱: ${
-    result[0] * result[1]
+  `가장 큰 곱을 가진 숫자 조합: ${testResult.join(" and ")}, 곱: ${
+    testResult[0] * testResult[1]
   }`
 );
